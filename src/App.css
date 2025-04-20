@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.filter-list {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: lightblue;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.filter-list input[type="text"] {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.filter-list ul {
+  padding-left: 20px; 
+  list-style-position: inside; 
+}
+
+.filter-list li {
+  margin: 5px 0; 
+}
+
