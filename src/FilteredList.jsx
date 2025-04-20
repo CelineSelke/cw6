@@ -1,13 +1,13 @@
-import React, {Component} from 'react'; import
+import React, { Component } from 'react';
+import List from './List';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
-List from './List';
-import { render } from '@testing-library/react';
-
-class FilteredList extends Component{
-    constructor(props){
+class FilteredList extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            search: ""
+            search: "",
+            type: "all"
         };
     }
 
@@ -15,22 +15,30 @@ class FilteredList extends Component{
         this.setState({search: event.target.value.toLowerCase()});
     }
 
-    filterItem = (item) => {
-        return item.name.toLowerCase().search(this.state.search) !== -1;
+    handleSelect = (eventKey) => {
+        this.setState({type: eventKey});
     }
 
-    render(){
-        return(
+    filterItem = (item) => {
+        const nameMatch = item.name.toLowerCase().includes(this.state.search);
+        const typeMatch = this.state.type === "all" || item.type.toLowerCase() === this.state.type;
+        return nameMatch && typeMatch;
+    }
 
+    render() {
+        return (
             <div className='filter-list'>
                 <h1>Produce Search</h1>
-                <input type="text" placeholder='Search' onChange={this.onSearch}/>
-                <List items={this.props.items.filter(this.filterItem)}/>
+                <input type="text" placeholder='Search' onChange={this.onSearch} />
+                <DropdownButton id="typeDropdown" title={"Type"} onSelect={this.handleSelect}>
+                    <Dropdown.Item eventKey="all">All</Dropdown.Item>
+                    <Dropdown.Item eventKey="fruit">Fruit</Dropdown.Item>
+                    <Dropdown.Item eventKey="vegetable">Vegetable</Dropdown.Item>
+                </DropdownButton>
+                <List items={this.props.items.filter(this.filterItem)} />
             </div>
-
         );
     }
-
 }
 
 export default FilteredList;
