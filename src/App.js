@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'; import FilteredList from
 './FilteredList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 /*
 This list of produce that is passed into the FilteredList component.
 Notice that it is a list of javascript objects where {key: value}.
